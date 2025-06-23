@@ -3,6 +3,7 @@
 services:
   - type: web
     name: api-controle-de-filmes
+    env: buildpack
     plan: free
     buildCommand: "./mvnw clean package"
     startCommand: "java -jar target/ControleDeFilmes-0.0.1-SNAPSHOT.jar"

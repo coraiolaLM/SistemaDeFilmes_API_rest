@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 public class Usuario {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq")
     private Long id;
 
     @Column(unique = true)

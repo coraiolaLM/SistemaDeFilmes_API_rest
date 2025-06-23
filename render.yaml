@@ -1,13 +1,11 @@
 services:
   - type: web
     name: api-controle-de-filmes
-    env: java
+    env: docker
     plan: free
-    javaVersion: 17
-    buildCommand: "./mvnw clean package"
-    startCommand: "java -jar target/ControleDeFilmes-0.0.1-SNAPSHOT.jar"
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: API_rest
-          property: internalDatabaseUrl
+          property: connectionString

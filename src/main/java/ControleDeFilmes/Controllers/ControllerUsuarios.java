@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,14 +27,19 @@ public class ControllerUsuarios {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login() {
-        return ResponseEntity.ok("Use Basic Auth para login");
+    public ResponseEntity<Map<String, Object>> login(@AuthenticationPrincipal UserDetails userDetails) {
+        Usuario usuario = usuarioService.findByEmail(userDetails.getUsername());
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("mensagem", "Login bem-sucedido");
+        response.put("email", usuario.getEmail());
+        response.put("nome", usuario.getNome());
+        response.put("perfil", usuario.getPerfil());
+        
+        return ResponseEntity.ok(response);
     }
-
     @PostMapping("/cadastrar")
     public ResponseEntity<Map<String, String>> cadastrarUsuario(@RequestBody Usuario usr) {
-        // A lógica de validação agora está no serviço e lança uma RuntimeException em caso de erro.
-        // A classe TratamentoGlobalDeExecoes irá capturar a exceção e formatar a resposta de erro.
         usuarioService.cadastrarUsuario(usr);
         
         Map<String, String> response = new HashMap<>();

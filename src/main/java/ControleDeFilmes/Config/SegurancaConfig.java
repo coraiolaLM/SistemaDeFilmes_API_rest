@@ -28,8 +28,9 @@ public class SegurancaConfig {
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(
                     "/api/usuarios/cadastrar",
-                    "/login", // Adicione esta linha
-                    "/home"  // Adicione esta linha se necessário
+                    "/api/usuarios/login",
+                    "/login",
+                    "/home"  
                 ).permitAll()
                 .anyRequest().authenticated()
             )

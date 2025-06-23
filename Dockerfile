@@ -9,8 +9,4 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/ControleDeFilmes-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 10000
-<<<<<<< HEAD
 CMD ["java", "-jar", "app.jar"]
-=======
-CMD ["java", "-jar", "app.jar"]
->>>>>>> branch 'main' of https://github.com/coraiolaLM/SistemaDeFilmes_API_rest.git

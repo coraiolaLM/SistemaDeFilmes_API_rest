@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 public class Filme {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "filme_seq", sequenceName = "filme_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "filme_seq")
     private Long id;
+
     
     @Column(nullable = false, unique = true)
     private String titulo;

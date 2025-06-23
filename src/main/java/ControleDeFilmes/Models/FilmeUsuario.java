@@ -1,13 +1,14 @@
 package ControleDeFilmes.Models;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class FilmeUsuario {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "filme_usuario_seq", sequenceName = "filme_usuario_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "filme_usuario_seq")
     private Long id;
     
     @ManyToOne

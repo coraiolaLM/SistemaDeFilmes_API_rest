@@ -27,8 +27,7 @@ public class SegurancaConfig {
             
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(
-                    "/api/usuarios/cadastrar",
-                    "/h2-console/**"
+                    "/api/usuarios/cadastrar"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

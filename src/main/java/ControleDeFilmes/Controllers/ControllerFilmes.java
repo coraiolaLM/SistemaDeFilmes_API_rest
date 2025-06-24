@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import ControleDeFilmes.DTO.FilmeDTO;
+import ControleDeFilmes.DTO.FilmeUsuarioDTO;
+import ControleDeFilmes.DTO.RespostaDTO;
 import ControleDeFilmes.Models.Filme;
 import ControleDeFilmes.Models.FilmeUsuario;
 import ControleDeFilmes.Service.FilmesService;
@@ -31,25 +35,27 @@ public class ControllerFilmes {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Filme> cadastrarFilme(
-            @RequestBody Map<String, String> request,
+    public ResponseEntity<RespostaDTO> cadastrarFilme(
+            @RequestBody FilmeDTO filmeDTO,
             @AuthenticationPrincipal UserDetails userDetails) {
         Filme filme = filmesService.cadastrarFilmeComValidacao(
-            request.get("titulo"),
-            request.get("genero"),
-            Integer.parseInt(request.get("anoLancamento")),
+            filmeDTO.getTitulo(),
+            filmeDTO.getGenero(),
+            filmeDTO.getAnoLancamento(),
             userDetails);
-        return ResponseEntity.ok(filme);
+        
+        return ResponseEntity.ok(new RespostaDTO("Filme cadastrado com sucesso", filme));
     }
 
     @PostMapping("/adicionarParaAssistir")
-    public ResponseEntity<FilmeUsuario> adicionarFilmeParaAssistir(
-            @RequestBody Map<String, Long> request,
+    public ResponseEntity<RespostaDTO> adicionarFilmeParaAssistir(
+            @RequestBody FilmeUsuarioDTO filmeUsuarioDTO,
             @AuthenticationPrincipal UserDetails userDetails) {
         FilmeUsuario result = filmesUsuariosService.adicionarFilmeParaAssistir(
-            request.get("filmeId"),
+            filmeUsuarioDTO.getFilmeId(),
             userDetails);
-        return ResponseEntity.ok(result);
+        
+        return ResponseEntity.ok(new RespostaDTO("Filme adicionado à lista", result));
     }
 
     @PostMapping("/marcarComoAssistido")

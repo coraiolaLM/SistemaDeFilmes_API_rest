@@ -59,22 +59,22 @@ public class ControllerFilmes {
     }
 
     @PostMapping("/marcarComoAssistido")
-    public ResponseEntity<String> marcarComoAssistido(
-            @RequestBody Map<String, Long> request,
+    public ResponseEntity<RespostaDTO> marcarComoAssistido(
+            @RequestBody FilmeUsuarioDTO dto,
             @AuthenticationPrincipal UserDetails userDetails) {
         filmesUsuariosService.marcarComoAssistido(
-            request.get("filmeUsuarioId"),
+            dto.getFilmeId(),
             userDetails);
-        return ResponseEntity.ok("Filme marcado como assistido");
+        return ResponseEntity.ok(new RespostaDTO("Filme marcado como assistido", null));
     }
 
     @PostMapping("/removerParaAssistir")
-    public ResponseEntity<String> removerFilmeParaAssistir(
-            @RequestBody Map<String, Long> request,
+    public ResponseEntity<RespostaDTO> removerFilmeParaAssistir(
+            @RequestBody FilmeUsuarioDTO dto,
             @AuthenticationPrincipal UserDetails userDetails) {
         filmesUsuariosService.removerFilmeParaAssistir(
-            request.get("filmeUsuarioId"),
+            dto.getFilmeId(),
             userDetails);
-        return ResponseEntity.ok("Filme removido da lista");
+        return ResponseEntity.ok(new RespostaDTO("Filme removido da lista", null));
     }
 }

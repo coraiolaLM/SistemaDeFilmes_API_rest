@@ -3,26 +3,27 @@ package ControleDeFilmes.DTO;
 import java.time.LocalDate;
 
 public class FilmeUsuarioDTO {
-    private Long filmeId;
-    private boolean assistido;
-    private LocalDate dataAssistido;
+	 private Long filmeId;
+	    private boolean assistido;
+	    private LocalDate dataAssistido;
+	    
+	    public Long getFilmeId() {
+	        return filmeId;
+	    }
+	    public void setFilmeId(Long filmeId) {
+	        this.filmeId = filmeId;
+	    }
+	    public boolean isAssistido() {
+	        return assistido;
+	    }
+	    public void setAssistido(boolean assistido) {
+	        this.assistido = assistido;
+	    }
     
-    public Long getFilmeId() {
-        return filmeId;
-    }
-    public void setFilmeId(Long filmeId) {
-        this.filmeId = filmeId;
-    }
-    public boolean isAssistido() {
-        return assistido;
-    }
-    public void setAssistido(boolean assistido) {
-        this.assistido = assistido;
-    }
-    public LocalDate getDataAssistido() {
+	    public LocalDate getDataAssistido() {
         return dataAssistido;
     }
-    public void setDataAssistido(LocalDate dataAssistido) {
+	    public void setDataAssistido(LocalDate dataAssistido) {
         this.dataAssistido = dataAssistido;
     }
 }

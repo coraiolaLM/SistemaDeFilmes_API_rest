@@ -37,19 +37,19 @@ public class UsuariosService implements UserDetailsService {
         return usuarioRepository.findByEmail(email);
     }
 
-    /**
-     * Cadastra um novo usuário após validar as informações.
-     * Lança RuntimeException se a validação falhar.
-     * @param usr O objeto Usuario a ser cadastrado.
-     * @return O Usuario salvo.
-     */
     public Usuario cadastrarUsuario(Usuario usr) {
+        System.out.println("Dados recebidos para cadastro: " + usr.toString());
+        
         if (usr.getSenha() == null || usr.getSenha().length() < 4) {
             throw new RuntimeException("A senha deve ter no mínimo 4 caracteres!");
         }
+        
+        System.out.println("Verificando email: " + usr.getEmail());
         if (usuarioRepository.findByEmail(usr.getEmail()) != null) {
             throw new RuntimeException("Email já cadastrado!");
         }
+        
+        System.out.println("Verificando login: " + usr.getLogin());
         if (usr.getLogin() != null && usuarioRepository.findByLogin(usr.getLogin()) != null) {
             throw new RuntimeException("Login já existe!");
         }
@@ -57,6 +57,9 @@ public class UsuariosService implements UserDetailsService {
         usr.setPerfil("CLIENTE");
         usr.setSenha(passwordEncoder.encode(usr.getSenha()));
         
-        return usuarioRepository.save(usr);
+        Usuario usuarioSalvo = usuarioRepository.save(usr);
+        System.out.println("Usuário cadastrado com ID: " + usuarioSalvo.getId());
+        
+        return usuarioSalvo;
     }
 }

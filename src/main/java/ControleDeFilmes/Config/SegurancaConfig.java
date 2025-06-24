@@ -43,8 +43,8 @@ public class SegurancaConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
-            "https://coraiolalm.github.io/Consumindo_API_rest/",
-            "https://api-controle-de-filmes.onrender.com"
+        	    "https://coraiolalm.github.io",
+        	    "http://localhost"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));

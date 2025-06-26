@@ -24,13 +24,14 @@ public class SegurancaConfig {
             .cors(Customizer.withDefaults())
             .csrf(AbstractHttpConfigurer::disable)
             .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
-            
+
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(
                     "/api/usuarios/cadastrar",
                     "/api/usuarios/login",
                     "/login",
-                    "/home"  
+                    "/home",
+                    "/ping"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
@@ -38,13 +39,13 @@ public class SegurancaConfig {
 
         return http.build();
     }
-    
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
-        	    "https://coraiolalm.github.io",
-        	    "http://localhost"
+                "https://coraiolalm.github.io",
+                "http://localhost"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
@@ -53,7 +54,7 @@ public class SegurancaConfig {
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-        
+
         return source;
     }
 

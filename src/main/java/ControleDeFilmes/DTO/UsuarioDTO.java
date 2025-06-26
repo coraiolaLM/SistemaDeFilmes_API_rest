@@ -1,3 +1,4 @@
+//Objeto de Transferência de Dados para usuarios
 package ControleDeFilmes.DTO;
 
 public class UsuarioDTO {

@@ -1,3 +1,4 @@
+//Tecnica de ping
 package ControleDeFilmes.Config;
 
 import org.springframework.http.ResponseEntity;

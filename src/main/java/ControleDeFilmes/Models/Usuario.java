@@ -1,3 +1,4 @@
+//classe usuarios
 package ControleDeFilmes.Models;
 
 import jakarta.persistence.*;

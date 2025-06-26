@@ -1,3 +1,4 @@
+//Configurações de segurança
 package ControleDeFilmes.Config;
 
 import java.util.Arrays;

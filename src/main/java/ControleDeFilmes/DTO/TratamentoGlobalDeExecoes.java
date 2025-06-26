@@ -1,3 +1,4 @@
+//Centralizar o tratamento de erros e exceções em um único lugar
 package ControleDeFilmes.DTO;
 
 import org.springframework.http.HttpStatus;

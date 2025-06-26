@@ -1,3 +1,4 @@
+//Objeto de Transferência de Dados para filmes
 package ControleDeFilmes.DTO;
 
 public class FilmeDTO {

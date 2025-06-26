@@ -1,3 +1,4 @@
+//Objeto de Transferência de Dados para respostas
 package ControleDeFilmes.DTO;
 
 public class RespostaDTO {

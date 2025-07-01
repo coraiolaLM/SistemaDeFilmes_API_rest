@@ -46,6 +46,7 @@ public class SegurancaConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
                 "https://coraiolalm.github.io",
+                "https://consumindo-api-rest.onrender.com",
                 "http://localhost"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
